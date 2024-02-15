@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- THEME COLOR -->
+    <meta name="theme-color" content="#0078d7">
+    <!-- GENERIC META INFO -->
+    <meta name="description" content="Your PC ran into a problem and needs to restart. We're just collecting some error info, and
+        then we'll restart for you.">
+    <meta name="keywords"
+        content="windows blue screen of death, bsod, blue screen of death, bad screen, evil screen, blue screen error, bad computer, windows 10 blue screen, windows 11 blue screen, windows blue screen">
+    <meta name="developer" content="Sean Rooney">
+    <!-- <link rel="canonical" href=""> -->
+    <!-- ROBOTS -->
+    <meta name="robots" content="index, follow" />
+    <!-- OPENGRAPH TAGS (SOCIAL MEDIA) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content=":(" />
+    <meta property="og:description" content="Your PC ran into a problem and needs to restart. We're just collecting some error info, and
+        then we'll restart for you." />
+    <!-- <meta property="og:url" content="" /> -->
+    <!-- TWITTER/X CARD DATA -->
+    <meta name="twitter:title" content=":(" />
+    <meta name="twitter:description" content="Your PC ran into a problem and needs to restart. We're just collecting some error info, and
+        then we'll restart for you." />
+    <title>:(</title>
+    <style>
+        :root {
+            --background-color: #0078d7;
+            --text-color: #FFFFFF;
+            --font-stack: "Segoe UI", "Verdana", sans-serif;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--font-stack);
+            display: grid;
+            place-items: center;
+        }
+
+        main {
+            padding: 1em;
+            min-width: 75%;
+        }
+
+        .sad-face {
+            font-size: 5rem;
+            /* Responsive font size */
+            margin: 0;
+        }
+
+        .message {
+            margin: 0.5em 0;
+            font-size: 1.4rem;
+            /* Responsive font size */
+            line-height: 1.4;
+            max-width: 40rem;
+        }
+
+        .percent {
+            font-size: 2.4rem;
+            /* Responsive font size */
+            margin: 0.2em 0;
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            /* Responsive font size */
+            margin-top: 2em;
+        }
+
+        @media (max-width: 600px) {
+            .sad-face {
+                font-size: 3rem;
+            }
+
+            .message,
+            .percent,
+            .footer-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main aria-live="polite" aria-atomic="true">
+        <div class="sad-face" aria-hidden="true">:(</div>
+        <p class="message">Your PC ran into a problem and needs to restart. We're just collecting some error info, and
+            then we'll restart for you.</p>
+        <div id="percent" class="percent">0% complete</div>
+        <p class="footer-text">For more information about this issue and possible fixes, visit our website.</p>
+        <p class="footer-text">If you call a support person, give them this info:</p>
+        <p class="footer-text">Stop code: 0x00000000</p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const percentElement = document.getElementById('percent');
+            let percent = 0; // Start at 0%
+            let increasing = true; // Initially set to increase
+
+            function updatePercentage() {
+                // Randomly decide whether to change direction with a 10% chance
+                if (Math.random() < 0.1) {
+                    increasing = !increasing;
+                }
+
+                // Update the percentage based on the current direction
+                percent = increasing ? percent + 1 : percent - 1;
+
+                // Keep the percentage within bounds of 0 to 99
+                if (percent >= 99) {
+                    percent = 99;
+                    increasing = false;
+                } else if (percent <= 0) {
+                    percent = 0;
+                    increasing = true;
+                }
+
+                // Update the display
+                percentElement.textContent = `${percent}% complete`;
+
+                // Call the update function again with a new random interval
+                const randomInterval = Math.random() * 1000 + 500; // Random time between 500 and 1500 milliseconds
+                setTimeout(updatePercentage, randomInterval);
+            }
+
+            // Initial call to start the loop
+            setTimeout(updatePercentage, 10);
+        });
+    </script>
+</body>
+
+</html>
