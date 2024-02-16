@@ -111,7 +111,10 @@
             function updatePercentage() {
                 // Randomly decide whether to change direction with a 10% chance
                 if (Math.random() < 0.1) {
-                    increasing = !increasing;
+                    // Change direction only if percent is 0 or above 25
+                    if (percent === 0 || percent > 25) {
+                        increasing = !increasing;
+                    }
                 }
 
                 // Update the percentage based on the current direction
@@ -130,13 +133,14 @@
                 percentElement.textContent = `${percent}% complete`;
 
                 // Call the update function again with a new random interval
-                const randomInterval = Math.random() * 1000 + 500; // Random time between 500 and 1500 milliseconds
+                const randomInterval = Math.random() * 500 + 50; // Random time between 500 and 1500 milliseconds
                 setTimeout(updatePercentage, randomInterval);
             }
 
             // Initial call to start the loop
             setTimeout(updatePercentage, 10);
         });
+
     </script>
 </body>
 
